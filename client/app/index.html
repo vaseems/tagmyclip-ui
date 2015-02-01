@@ -1,44 +1,83 @@
 <!doctype html>
-<html class="no-js">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <!-- build:css(.) styles/vendor.css -->
-    <!-- bower:css -->
-    <!-- endbower -->
-    <!-- endbuild -->
-    <!-- build:css(.tmp) styles/main.css -->
-    <link rel="stylesheet" href="styles/main.css">
-    <!-- endbuild -->
-  </head>
-  <body ng-app="scenetagApp">
-    <!--[if lt IE 7]>
+<html ng-app="tagmyclip" class="no-js">
+<head>
+<meta charset="utf-8">
+<title>Tag My Scene</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width">
+<base href="/">
+<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+<!-- build:css(.) styles/vendor.css -->
+<!-- bower:css -->
+<!-- endbower -->
+<!-- endbuild -->
+<!-- build:css(.tmp) styles/main.css -->
+<link rel="icon" href="favicon.png" sizes="16x16" type="image/png">
+<link rel="stylesheet" href="styles/main.css">
+<link rel="stylesheet" href="styles/bootstrap.min.css">
+<link rel="stylesheet" href="bower_components\jqcloud2\dist\jqcloud.css">
+<!-- endbuild -->
+
+</head>
+<body  ng-controller="SceneTagController">
+	<!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <!-- Add your site or application content here -->
-    <div class="container">
-      <div class="header">
-        <ul class="nav nav-pills pull-right">
-          <li class="active"><a ng-href="#">Home</a></li>
-          <li><a ng-href="#/about">About</a></li>
-          <li><a ng-href="#">Contact</a></li>
-        </ul>
-        <h3 class="text-muted">scenetag</h3>
-      </div>
 
-      <div ng-view=""></div>
 
-      <div class="footer">
-        <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
-      </div>
+	<!-- Add your site or application content here -->
+	<div class="container">
+		<div class="header middle"
+			style="">
+			<ul>
+				<li>
+					<h3 class="text-muted col-sm-2"><img src="images\tagmyscene_small.png">Tag My Clip</h3>
+				</li>
+				<li>
+					<div class="row col-sm-8" id="search">
+						<div class="input-group">
+							<input type="text" id="search" ng-model="searchVal"
+								class="form-control"> <span class="input-group-btn">
+								<button class="btn btn-default" type="button"
+									ng-click="search()">Search</button>
+							</span>
+						</div>
+				</li>
+				<li>
+          <div class="col-sm-2"><a href="#scenetagapi">API</a></div>
+        </li>
+        <li>
+					<div class="col-sm-2"><a href="">Sign in</a></div>
+				</li>
+		</div>
+	</div>
+
+	<div ng-view="" id="view" class="ML50 MT50 col-md-10"></div>
+
+	</div>
+
+
+	<div class="col-sm-2 tags menu-right">
+		<ul>
+			<li ng-repeat="word in words" class="menuitem" ng-click="searchVideos($index)" ng-model="word"><span><img src="images/comedy.png"/></span><span>{{word.text}}</span></li>
+		</ul>
+	</div>
+
+	<div class="col-sm-2 tags hide menu-left">
+		<ul>
+			<li ng-repeat="menuItem in menu" class="menuitem" ><span>{{menuItem.text}}</span></li>
+		</ul>
+	</div>
+
+<script type="text/ng-template" id="tagcloud.html">
+    <div class="row col-lg-12 full-height MT30">
+      <jqcloud words="words" width="1100" height="500" colors="{{colors}}"
+        delay="10" steps="10" font-size="{from:0.09, to:0.04}"></jqcloud>
     </div>
+</script>
 
-
-    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+	<!-- Google Analytics: change UA-XXXXX-X to be your site's ID
      <script>
        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -47,24 +86,42 @@
 
        ga('create', 'UA-XXXXX-X');
        ga('send', 'pageview');
-    </script>
+    </script> -->
 
-    <!-- build:js(.) scripts/oldieshim.js -->
-    <!--[if lt IE 9]>
+
+	<!-- build:js(.) scripts/oldieshim.js -->
+	<!--[if lt IE 9]>
     <script src="bower_components/es5-shim/es5-shim.js"></script>
     <script src="bower_components/json3/lib/json3.min.js"></script>
     <![endif]-->
-    <!-- endbuild -->
+	<!-- endbuild -->
 
-    <!-- build:js(.) scripts/vendor.js -->
-    <!-- bower:js -->
-    <!-- endbower -->
-    <!-- endbuild -->
+	<!-- build:js(.) scripts/vendor.js -->
+	<!-- bower:js -->
+	<!-- endbower -->
+	<!-- endbuild -->
 
-        <!-- build:js({.tmp,app}) scripts/scripts.js -->
-        <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/controllers/about.js"></script>
-        <!-- endbuild -->
+	<!-- build:js({.tmp,app}) scripts/scripts.js -->
+	<!--script type="text/javascript" src="scripts/lib/script.js"></script-->
+	<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+	<script type="text/javascript" src="bower_components/angular/angular.js"></script>
+	<script type="text/javascript" src="bower_components/angular-bootstrap/ui-bootstrap.js"></script>
+	<script type="text/javascript" src="bower_components/angular-animate/angular-animate.js"></script>
+	<script type="text/javascript" src="bower_components/angular-resource/angular-resource.js"></script>
+	<script type="text/javascript" src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+	<script type="text/javascript" src="bower_components/angular-touch/angular-touch.js"></script>
+	<script type="text/javascript" src="bower_components/angular-route/angular-route.js"></script>
+	<script type="text/javascript" src="bower_components/angular-youtube/angular-youtube-player-api.js"></script>
+	<script type="text/javascript" src="bower_components/angular-cookies/angular-cookies.js"></script>
+	<script type="text/javascript" src="bower_components/jqcloud2/dist/jqcloud.js"></script>
+	<script type="text/javascript" src="scripts/lib/angular-jqcloud.js"></script>
+	<script type="text/javascript" src="scripts/lib/auth.js"></script>
+	<script type="text/javascript" src="scripts/lib/client.js?onload=googleApiClientReady"></script>
+	<script type="text/javascript" src="scripts/lib/youtubeapp.js"></script>
+	<script type="text/javascript" src="scripts/app.js"></script>
+	<script type="text/javascript" src="scripts/controllers/main.js"></script>
+	<script type="text/javascript">
+		angular.element(document).ready(googleApiClientReady);
+	</script>
 </body>
 </html>

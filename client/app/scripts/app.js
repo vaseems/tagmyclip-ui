@@ -9,25 +9,31 @@
  * Main module of the application.
  */
 angular
-  .module('scenetagApp', [
+  .module('tagmyclip', [
     'ngAnimate',
     'ngCookies',
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'ui.bootstrap',
+    'youtube',
+    'angular-jqcloud',
+    'YouTubeApp'
   ])
-  .config(function ($routeProvider) {
+  .config(function ($routeProvider, $locationProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+        controller: 'SceneTagController'
       })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl'
+      .when('/toptags', {
+        templateUrl: 'tagcloud.html',
+        controller: 'TagCouldController'
       })
       .otherwise({
         redirectTo: '/'
       });
+    
+    $locationProvider.html5Mode(true);
   });

@@ -1,23 +1,46 @@
-<div class="jumbotron">
-  <h1>'Allo, 'Allo!</h1>
-  <p class="lead">
-    <img src="images/yeoman.png" alt="I'm Yeoman"><br>
-    Always a pleasure scaffolding your apps.
-  </p>
-  <p><a class="btn btn-lg btn-success" ng-href="#">Splendid!<span class="glyphicon glyphicon-ok"></span></a></p>
+<div class="row col-md-12 bbgwb">
+  <ul class="menu col-md-10">
+      <li class="menuitem"><a href="#mosttagged">Most Tagged</a></li>
+      <li class="menuitem"><a href="#mostviewed">Most Viewed</a></li>
+      <li class="menuitem"><a href="#toptags">Top Tags</a></li>
+  </ul>
+  <span>Total Videos: {{videoList.pageInfo.totalResults}}</span>
 </div>
 
-<div class="row marketing">
-  <h4>HTML5 Boilerplate</h4>
-  <p>
-    HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.
-  </p>
+  <div class="row col-md-10 ML30" style="min-height: 480px;" ng-controller="YouTubeCtrl" ng-model="player">
+    <div id="player"></div>
+    <youtube width="100%" height="{{yt.height}}" videoid="{{yt.videoid}}"></youtube>
+     <button id="play" class="hide" ng-click="sendControlEvent(YT_event.PLAY)">Send Play</button>
+    <button id="pause" class="hide" ng-click="sendControlEvent(YT_event.PAUSE)">Send Pause</button>
+    <button  id="stop" class="hide" ng-click="sendControlEvent(YT_event.STOP)">Send Stop</button>
+  </div>
 
-  <h4>Angular</h4>
-  <p>
-    AngularJS is a toolset for building the framework most suited to your application development.
-  </p>
-
-  <h4>Karma</h4>
-  <p>Spectacular Test Runner for JavaScript.</p>
+<div class="video-results" style="min-height: 600px; position; relative; margin-top: 10px;">
+  <div class="row col-md-10 ML30" >
+    <input type="range" id="seek" title="Seek" min="{{seek.min}}" max="{{seek.max}}" step="{{seek.step}}" value="{{seek.value}}" style="display:none"/>
+  </div>
+  <div class="row col-md-10 ML30" >
+    <input type="text" id="tag" ng-model="tag" class="form-control" ng-focus="pauseVideo()" ng-blur="playVideo()" ng-keypress="scanText()" placeholder="Enter tag here to tag this scene.">
+  </div>
+  <div class="col-sm-2 video" ng-repeat="video in videoList.items" ng-model="video" >
+    <div class="thumbnail" ng-click="viewVideo($index)"> <img ng-src="{{video.snippet.thumbnails.default.url}}" /></div>
+    <div class="title" ng-click="viewVideo($index)">{{video.snippet.title}}</div>
+  </div>
+</div>
+<div class="row col-md-12 footer ML100">
+  <div id="footer-links">
+    <ul id="footer-links-primary">  <li><a href="//www.youtube.com/yt/about/en-GB/">About</a></li>
+      <li><a href="//www.voisintech.com/yt/copyright/en-GB/">Copyright</a></li>
+      <li><a href="https://plus.google.com/+scenetag" dir="ltr">+Tag My Scene</a></li>
+    </ul>
+    <ul id="footer-links-secondary">  <li><a href="/t/terms">Terms</a></li>
+      <li><a href="https://www.voisintech.com/intl/en-GB/policies/privacy/">Privacy</a></li>
+      <li><a href="//www.voisintech.com/yt/policyandsafety/en-GB/">
+          Policy &amp; Safety
+      </a></li>
+      <li><a href="//support.voisintech.com/?hl=en-GB" onclick="return yt.www.feedback.start(59);" class="reportbug">Sending feedback</a></li>
+      <li><a href="/testtube">Try something new!</a></li>
+      <li>  <span class="copyright" dir="ltr">©2015 Voisin Technologies</span> </li>
+    </ul>
+  </div>
 </div>
