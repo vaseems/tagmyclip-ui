@@ -1,0 +1,21 @@
+tagmyclip:
+ solr:
+  collectionName: tagmyclip
+  urlString: "http://localhost:8983/solr/"
+ spring:
+  datasource:
+   url: "jdbc:mysql://localhost/tagmyclip"
+   username: root
+   password: admin
+   driverclassname: "com.mysql.jdbc.Driver"
+management:
+ port: 8081
+ context-path: "/actuator"
+ security:
+  role: ADMIN
+security:
+ basic:
+  enabled: false
+ user:
+  name: "admin"
+  password: "admin"

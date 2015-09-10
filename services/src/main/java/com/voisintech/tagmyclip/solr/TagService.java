@@ -7,7 +7,7 @@ import com.voisintech.tagmyclip.model.TagSolr;
 
 public interface TagService {
 
-	int DEFAULT_PAGE_SIZE = 3;
+	int DEFAULT_PAGE_SIZE = 10;
 	
 	Page<TagSolr> findByName(String searchTerm, Pageable pageable);	
 }

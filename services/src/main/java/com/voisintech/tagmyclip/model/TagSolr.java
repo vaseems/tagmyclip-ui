@@ -16,7 +16,6 @@ public class TagSolr implements SearchableProductDefinition{
 	@Id @Indexed(TAG_ID_FIELD_NAME)
 	private String id;
 	@Indexed(VIDEO_SOURCE_FIELD_NAME)
-	@Field
 	private String source;
 	@Indexed(CREATED_BY_FIELD_NAME)
 	private String createdBy;

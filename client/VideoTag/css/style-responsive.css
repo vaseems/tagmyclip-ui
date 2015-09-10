@@ -1,0 +1,62 @@
+
+
+/* Start: Samsung Galaxy Note */
+
+@media only screen 
+and (min-device-width : 360px) 
+and (max-device-width : 640px)  
+{
+     body{ font-size:12px; }
+    .navbar-header {
+        float: none;
+        margin: 5px 0;
+        text-align: center;
+        width: 100%;
+    }
+     .navbar-brand-text {
+        color: #fff;
+        float: left;
+        left: 65%;
+        position: absolute;
+        top: 35%;
+        font-size:12px;
+     }
+    .head-section{ width:100%; }
+    .head-section .navbar{ margin:auto;}
+    .head-section .navbar { min-height: auto; background-color: #000; }
+    .input-group .form-control:last-child,
+    .input-group-addon:last-child,
+    .input-group-btn:last-child > .btn,
+    .input-group-btn:last-child >
+    .dropdown-toggle,
+    .input-group-btn:first-child > .btn:not(:first-child) {
+        width: 100%;
+    }
+    .input-group { display: inline; }
+    .head-section .navbar-collapse ul.navbar-nav {
+        float: left;
+        margin-right: 0;
+        z-index: 199;
+    }
+    .p-t40-b40{ padding:0px; }
+    .visible-xs { display: block !important; }
+    .nav > li {
+        float: left;
+    }
+}
+
+@media only screen 
+and (min-device-width : 360px) 
+and (max-device-width : 640px) 
+and (orientation : landscape)  
+{
+    
+  .navbar-header {
+        float: none;
+        margin: 5px 0;
+        text-align: center;
+        width: 100%;
+    } 
+}
+/* End: Samsung Galaxy Note */
+

@@ -1,5 +1,6 @@
 package com.voisintech.tagmyclip.controller;
 
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +22,8 @@ import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
 
 @RestController
-@RequestMapping("/api.voisintech.com/v1/tag")
-@Api(value = "/api.voisintech.com/v1/tag")
+@RequestMapping("/api.voisintech.com/tag")
+@Api(value = "/api.voisintech.com/tag")
 public class TagMyClipController {
 
 	@Autowired
@@ -33,7 +34,7 @@ public class TagMyClipController {
 	private TagPersistenceService tagPersistenceService;
 
 	@RequestMapping("/")
-	@ApiOperation(value = "")
+	@ApiOperation(value = "/")
 	public Response tagmyclip() {
 		return Response.ok()
 				.entity(new String("Vaseem Ibn Abbas, Enterpreneur")).build();
@@ -52,10 +53,9 @@ public class TagMyClipController {
 			@PathVariable String searchTerm,
 			@PageableDefault(page = 0, size = TagService.DEFAULT_PAGE_SIZE) Pageable pageable) {
 		try {
-			return Response
-					.ok()
-					.entity(productService.findByName(searchTerm, pageable)
-							.getContent().get(0)).build();
+			return Response.ok()
+					.entity(productService.findByName(searchTerm, pageable))
+					.type(MediaType.APPLICATION_JSON).build();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			return Response.serverError().build();
